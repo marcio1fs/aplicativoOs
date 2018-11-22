@@ -16,7 +16,7 @@ import br.com.os.domain.Fabricante;
 
 @Path("fabricante")
 public class FabricanteService {
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante
+	//http://localhost:8080/AplicativoOs/rest/fabricante
 	@GET//protocolo de chamada de informações do banco
 	public String listar() {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
@@ -28,8 +28,8 @@ public class FabricanteService {
 		return json;
 	}
 
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante/{codigo}
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante/10
+	//http://localhost:8080/AplicativoOs/rest/fabricante/{codigo}
+	//http://localhost:8080/AplicativoOs/rest/fabricante/10
 	@GET //listar 
 	@Path("{codigo}")//define o nome do serviço a ser chamado
 	public String buscar(@PathParam("codigo") Long codigo) {
@@ -45,7 +45,7 @@ public class FabricanteService {
 		return json;
 	}
 
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante
+	//http://localhost:8080/AplicativoOs/rest/fabricante
 	@POST //salvar
 	public String salvar(String json) {
 		Gson gson = new Gson();
@@ -58,7 +58,7 @@ public class FabricanteService {
 		return jsonSaida;
 	}
 
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante
+	//http://localhost:8080/AplicativoOs/rest/fabricante
 	@PUT //editar
 	public String editar(String json) {
 		Gson gson = new Gson();
@@ -71,7 +71,7 @@ public class FabricanteService {
 		return jsonSaida;
 	}
 	
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante
+	//http://localhost:8080/AplicativoOs/rest/fabricante
 	@DELETE
 	public String excluir(String json){
 		Gson gson = new Gson();

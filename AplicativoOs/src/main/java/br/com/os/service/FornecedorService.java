@@ -46,7 +46,7 @@ public class FornecedorService {
 		return json;
 	}
 	
-	// http://127.0.0.1:8080/LojaVirtual/rest/fabricante
+	//http://localhost:8080/AplicativoOs/rest/fabricante
 	@POST //salvar
 	public String salvar(String json) {
 		Gson gson = new Gson();
