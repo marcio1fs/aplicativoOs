@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Listagem de Contas a Pagar">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{contasPagarBean.contasPagas}"
+					var="contasPagar" rows="5" paginatorPosition="top">
+					<f:facet name="header">
+						<p:commandButton value="Novo"
+							actionListener="#{contasPagarBean.novo}"
+							oncomplete="PF('dialogo').show();"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+					</f:facet>
+
+					<p:column headerText="Nome" filterBy="#{contasPagar.codigo}"
+						sortBy="#{contasPagar.codigo}">
+						<h:outputText value="#{contasPagar.codigo}" />
+					</p:column>
+
+					<p:column headerText="Fornecedor"
+						filterBy="#{contasPagar.contasPagar.codigo}"
+						sortBy="#{contasPagar.fornecedor.codigo}">
+						<h:outputText value="#{contasPagar.fornecedor.codigo}" />
+						<h:outputText value=" - " />
+						
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{contasPagarBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir uma Conta" icon="ui-icon-alert" />
+							<f:attribute name="contasSelecionada" value="#{contasPagar}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{contasPagarBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="contasSelecionada" value="#{contasPagar}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Cadastros - Contas a Pagar" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="numero" value="Numero:" />
+					<p:inputText id="numero" maxlength="15" size="30"
+						value="#{contasPagarBean.contasPagar.codigo}" required="true"
+						requiredMessage="O campo 'Numero' é obrigatório" />
+
+					<p:outputLabel for="fornecedor" value="Fornecedor:" />
+					<p:selectOneMenu id="fornecedor" filter="true"
+						value="#{contasPagarBean.contasPagar.fornecedor}"
+						converter="omnifaces.SelectItemsConverter" required="true"
+						requiredMessage="O campo 'Fornecedor' é obrigatório">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione um Fornecedor" />
+						<f:selectItems value="#{contasPagarBean.fornecedores}"
+							var="fornecedor" itemValue="#{fornecedor}"
+							itemLabel="#{fornecedor.nome}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{contasPagarBean.salvar}"
+						update=":mensagem :formCadastro:painel :formListagem:tabela" />
+
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

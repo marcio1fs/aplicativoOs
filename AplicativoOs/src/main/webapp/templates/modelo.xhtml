@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Controle de Ordem de Serviços</title>
+	<h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<div id="geral">
+		<div id="topo" class="divTopo">
+		<!-- <p:graphicImage  library="images" name="images3.jpg"
+				 styleClass="imagemCentralizada" />  -->	
+		</div>
+
+		<div id="cabecalho" class="divCabecalho">
+			<h:form id="formMenu">
+				<p:menubar>
+					<p:submenu label="Arquivo">
+						<p:menuitem value="Sair" />
+						
+					</p:submenu>
+
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Estado" url="/paginas/estados.xhtml" />
+						<p:menuitem value="Cidade" url="/paginas/cidades.xhtml" />
+						<p:menuitem value="Fabricante" url="/paginas/fabricantes.xhtml" />
+						<p:menuitem value="Produto" url="/paginas/produtos.xhtml" />
+						<p:menuitem value="Pessoas" url="/paginas/pessoas.xhtml" />
+						<p:menuitem value="Cliente" url="/paginas/clientes.xhtml" />
+						<p:menuitem value="Usuarios" url="/paginas/usuarios.xhtml" />
+						<p:menuitem value="Montadora" url="/paginas/montadora.xhtml" />
+						<p:menuitem value="veiculo" url="/paginas/veiculo.xhtml" />
+						<p:menuitem value="Fornecedor" url="/paginas/fornecedor.xhtml" />
+						<p:menuitem value="Contas a Pagar" url="/paginas/contasPagar.xhtml" />
+						<p:menuitem value="Funcionarios" url="/paginas/funcionario.xhtml" />
+						<p:menuitem value="Serviço" url="/paginas/servico.xhtml" />
+						<p:menuitem value="Tecnico" url="/paginas/tecnico.xhtml" />	
+											
+						
+					</p:submenu>
+
+					<p:submenu label="Movimentações">
+						<p:menuitem value="Venda" url="/paginas/vendas.xhtml" />
+						<p:menuitem value="Listagem de Vendas" url="/paginas/vendasListagem.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Oredm de Serviços">
+						<p:menuitem value="Ordem de Serviços" url="/paginas/os.xhtml" />
+							<p:menuitem value="Listagem de Os" url="/paginas/listagemOs.xhtml" />
+					</p:submenu>
+
+					<p:submenu label="Ajuda">
+					
+					
+						<p:menuitem value="Sobre" url="/paginas/sobre.xhtml" />
+						
+						
+					</p:submenu>
+				</p:menubar>
+			</h:form>
+		</div>
+
+		<div id="conteudo">
+			<ui:insert name="conteudo" />
+		</div>
+	</div>
+	
+	
+</h:body>
+</html>

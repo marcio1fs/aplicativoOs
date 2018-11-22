@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Listagem de Veiculos">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{veiculoBean.veiculos}" var="veiculo"
+					rows="5" paginatorPosition="top">
+					<f:facet name="header">
+						<p:commandButton value="Novo" actionListener="#{veiculoBean.novo}"
+							oncomplete="PF('dialogo').show();"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+					</f:facet>
+
+					<p:column headerText="Cliente"
+						filterBy="#{veiculo.cliente.pessoa.nome}"
+						sortBy="#{veiculo.cliente.pessoa.nome}">
+						<h:outputText value="#{veiculo.cliente.pessoa.nome}" />
+
+					</p:column>
+
+					<p:column headerText="descricao" filterBy="#{veiculo.descricao}"
+						sortBy="#{veiculo.descricao}">
+						<h:outputText value="#{veiculo.descricao}" />
+					</p:column>
+
+
+					<p:column headerText="modelo">
+
+						<h:outputText value="#{veiculo.modelo}" />
+					</p:column>
+
+					<p:column headerText="cor">
+						<h:outputText value="#{veiculo.cor}" />
+					</p:column>
+
+
+					<p:column headerText="km">
+						<h:outputText value="#{veiculo.km}" />
+					</p:column>
+
+					<p:column headerText="placa" filterBy="#{veiculo.placa}"
+						sortBy="#{veiculo.palca}">
+						<h:outputText value="#{veiculo.placa}" />
+					</p:column>
+
+
+					<p:column headerText="Montadora">
+
+						<h:outputText value="#{veiculo.montadora.descricao}" />
+
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{veiculoBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir o veiculo" icon="ui-icon-alert" />
+							<f:attribute name="veiculoSelecionado" value="#{veiculo}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{veiculoBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="veiculoSelecionado" value="#{veiculo}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Veiculos - Cadastro" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="descricao" value="Descricao:" />
+					<p:inputText id="descricao" maxlength="50" size="15"
+						value="#{veiculoBean.veiculo.descricao}" required="true"
+						requiredMessage="O campo 'Descrição' é obrigatório" 
+						converter="upperCaseConverter" />
+
+
+
+					<p:outputLabel for="modelo" value="Modelo:" />
+					<p:inputMask id="modelo" size="15"
+						value="#{veiculoBean.veiculo.modelo}" required="true"
+						requiredMessage="O campo 'Modelo' é obrigatório"
+					converter="upperCaseConverter" />
+
+					<p:outputLabel for="cor" value="Cor:" />
+					<p:inputMask id="cor" size="15" value="#{veiculoBean.veiculo.cor}"
+						required="true" requiredMessage="O campo 'cor' é obrigatório" 
+						converter="upperCaseConverter" />
+
+
+					<p:outputLabel for="placa" value="Placa:" />
+					<p:inputMask id="placa" mask="aaa-9999" size="10"
+						value="#{veiculoBean.veiculo.placa}" required="true"
+						requiredMessage="O campo 'placa' é obrigatório" 
+						converter="upperCaseConverter" />
+
+
+					<p:outputLabel for="km" value="KM:" />
+					<p:inputMask id="km" size="10" value="#{veiculoBean.veiculo.km}"
+						required="true" requiredMessage="O campo 'KM' é obrigatório" />
+
+
+					<p:outputLabel for="montadora" value="Montadora:" />
+					<p:selectOneMenu id="montadora" filter="true"
+						value="#{veiculoBean.veiculo.montadora}"
+						converter="omnifaces.SelectItemsConverter" required="true"
+						requiredMessage="O campo 'Montadora' é obrigatório">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione uma montadora" />
+						<f:selectItems value="#{veiculoBean.montadoras}" var="montadora"
+							itemValue="#{montadora}" itemLabel="#{montadora.descricao}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="Cliente:" />
+					<p:selectOneMenu value="#{veiculoBean.veiculo.cliente}"
+						converter="omnifaces.SelectItemsConverter" filter="true"
+						filterMatchMode="contains">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione um cliente" />
+						<f:selectItems value="#{veiculoBean.clientes}" var="cliente"
+							itemValue="#{cliente}" itemLabel="#{cliente.pessoa.codigo}" />
+					</p:selectOneMenu>
+
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{veiculoBean.salvar}"
+						update=":mensagem :formCadastro:painel :formListagem:tabela" />
+
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

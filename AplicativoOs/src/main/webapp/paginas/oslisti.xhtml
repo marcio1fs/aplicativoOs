@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewAction action="#{vendaBean.listar}" />
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Listagem de Os">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{osBean.orden}" var="os" rows="5"
+					paginatorPosition="top">
+
+
+					<p:column style="width: 16px;">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column headerText="Horário" sortBy="#{os.horario}">
+						<h:outputText value="#{os.horario}">
+							<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Preço Total" sortBy="#{os.valor}">
+						<h:outputText value="#{os.valor}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Cliente" filterBy="#{os.cliente.pessoa.nome}"
+						sortBy="#{os.cliente.pessoa.nome}">
+						<h:outputText value="#{os.cliente.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="Funcionário"
+						filterBy="#{os.funcionario.pessoa.nome}"
+						sortBy="#{os.funcionario.pessoa.nome}">
+						<h:outputText value="#{os.funcionario.pessoa.nome}" />
+					</p:column>
+
+					<p:rowExpansion>
+						<p:dataTable emptyMessage="Nenhum registro encontrado."
+							value="#{os.itensOs}" var="itemOs">
+							<p:column headerText="Produto">
+								<h:outputText value="#{itemOs.produto.descricao}" />
+							</p:column>
+
+							<p:column headerText="Qtde">
+								<h:outputText value="#{itemOs.quantidade}" />
+							</p:column>
+
+							<p:column headerText="Preço">
+								<h:outputText value="#{itemOs.valor}">
+									<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</p:rowExpansion>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

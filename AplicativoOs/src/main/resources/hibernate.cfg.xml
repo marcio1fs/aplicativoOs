@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Configurações de Conexão com o Banco de Dados -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+	<!--	<property name="connection.url">jdbc:mysql://node165571-aplicativoos.jelasticlw.com.br/dtvendas</property>  -->
+	 <property name="connection.url">jdbc:mysql://127.0.0.1:3306/oficina</property>
+
+		<property name="connection.username">root</property>
+
+		<!--	<property name="connection.password">NKBrka35676</property>  -->
+
+		<!-- Pool de Conexões -->
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- Gerenciamento do Contexto das Sessões -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Cache de Segundo Nível -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+		<!-- Mostra as SQLs Geradas -->
+		<property name="show_sql">true</property>
+
+		<!-- Cria as tabelas do banco de dados -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- Mapeamento das entidades -->
+		<mapping class="br.com.os.domain.Cidade" />
+		<mapping class="br.com.os.domain.Cliente" />
+		<mapping class="br.com.os.domain.Estado" />
+		<mapping class="br.com.os.domain.Fabricante" />
+		<mapping class="br.com.os.domain.Funcionario" />
+		<mapping class="br.com.os.domain.ItemVenda" />
+		<mapping class="br.com.os.domain.Pessoa" />
+		<mapping class="br.com.os.domain.Produto" />
+		<mapping class="br.com.os.domain.Usuario" />
+		<mapping class="br.com.os.domain.Venda" />
+		<mapping class="br.com.os.domain.ContasPagar" />
+		<mapping class="br.com.os.domain.ContasReceber" />
+		<mapping class="br.com.os.domain.FornecedorProduto" />
+		<mapping class="br.com.os.domain.Montadora" />
+		<mapping class="br.com.os.domain.Os" />
+		<mapping class="br.com.os.domain.ItensServico" />
+		<mapping class="br.com.os.domain.ItemOs" />
+		<mapping class="br.com.os.domain.Servico" />
+		<mapping class="br.com.os.domain.Tecnico" />
+		<mapping class="br.com.os.domain.Veiculo" />
+		<mapping class="br.com.os.domain.Fornecedor" />
+		<mapping class="br.com.os.domain.Historico" />
+		<mapping class="br.com.os.domain.Caixa" />
+ 
+	</session-factory>
+
+</hibernate-configuration>
