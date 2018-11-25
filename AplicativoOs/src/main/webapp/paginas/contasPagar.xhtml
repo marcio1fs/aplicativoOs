@@ -37,6 +37,20 @@
 						<h:outputText value=" - " />
 						
 					</p:column>
+					
+					
+					<p:column headerText="Valor da Conta" sortBy="#{produto.valor}">
+						<h:outputText value="#{produto.valor}">
+							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+						</h:outputText>
+					</p:column>
+					
+						<p:column headerText="Data de Cadastro"
+						sortBy="#{contasPagar.dataCadastro}">
+						<h:outputText value="#{contasPagar.dataCadastro}">
+							<f:convertDateTime locale="pt_BR" />
+						</h:outputText>
+					</p:column>
 
 					<p:column headerText="Opções">
 						<p:commandButton icon="ui-icon-trash"
@@ -71,10 +85,7 @@
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro">
 				<h:panelGrid id="painel" columns="2">
-					<p:outputLabel for="numero" value="Numero:" />
-					<p:inputText id="numero" maxlength="15" size="30"
-						value="#{contasPagarBean.contasPagar.codigo}" required="true"
-						requiredMessage="O campo 'Numero' é obrigatório" />
+			
 
 					<p:outputLabel for="fornecedor" value="Fornecedor:" />
 					<p:selectOneMenu id="fornecedor" filter="true"
@@ -87,6 +98,25 @@
 							var="fornecedor" itemValue="#{fornecedor}"
 							itemLabel="#{fornecedor.nome}" />
 					</p:selectOneMenu>
+					
+						<p:outputLabel for="dataCadastro" value="Data de Cadastro:" />
+					<p:calendar id="dataCadastro"
+						value="#{contasPagarBean.contasPagar.dataCadastro}" required="true"
+						requiredMessage="O campo 'Data de Cadastro' é obrigatório"
+						size="10" locale="pt_BR" />
+					
+						<p:outputLabel for="Valor" value="Valor:" />
+					<p:inputText id="Valor" maxlength="7" size="10"
+						value="#{contasPagarBean.contasPagar.valor}" required="true"
+						requiredMessage="O campo 'Valor' é obrigatório"
+						converterMessage="Informe um valor válido para o campo 'Preço''"
+						validatorMessage="Informe um valor entre 0,01 e 9999,99 para o campo 'Preço'">
+						<f:validateDoubleRange minimum="0.01" maximum="9999.99" />
+						<f:convertNumber locale="pt_BR" minFractionDigits="2" />
+					</p:inputText>
+					
+					
+					
 				</h:panelGrid>
 
 				<h:panelGrid columns="2">
