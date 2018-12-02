@@ -25,22 +25,21 @@
 
 					</f:facet>
 
-					<p:column headerText="Nome" filterBy="#{contasPagar.codigo}"
-						sortBy="#{contasPagar.codigo}">
-						<h:outputText value="#{contasPagar.codigo}" />
+					<p:column headerText="Codigo" filterBy="#{contasPagar.codigo}"
+						sortBy="#{contasPagar.fornecedor.codigo}">
+						<h:outputText value="#{contasPagar.fornecedor.codigo}" />
 					</p:column>
 
 					<p:column headerText="Fornecedor"
-						filterBy="#{contasPagar.contasPagar.codigo}"
-						sortBy="#{contasPagar.fornecedor.codigo}">
-						<h:outputText value="#{contasPagar.fornecedor.codigo}" />
-						<h:outputText value=" - " />
+						filterBy="#{contasPagar.fornecedor.nome}"
+						sortBy="#{contasPagar.fornecedor.nome}">
+						<h:outputText value="#{contasPagar.fornecedor.nome}" />
 						
 					</p:column>
 					
 					
-					<p:column headerText="Valor da Conta" sortBy="#{produto.valor}">
-						<h:outputText value="#{produto.valor}">
+					<p:column headerText="Valor da Conta" sortBy="#{contasPagar.valor}">
+						<h:outputText value="#{contasPagar.valor}">
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>

@@ -66,8 +66,7 @@ public class ContasPagarBean implements Serializable {
 			contasPagar = new ContasPagar();
 
 			FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			fornecedores = fornecedorDAO.listar("codigo");
-
+			fornecedores = fornecedorDAO.listar("nome");
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao gerar Contas a pagar");
 			erro.printStackTrace();
