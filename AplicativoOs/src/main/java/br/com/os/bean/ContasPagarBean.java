@@ -82,6 +82,8 @@ public class ContasPagarBean implements Serializable {
 
 			FornecedorDAO fornecedorDAO = new FornecedorDAO();
 			fornecedores = fornecedorDAO.listar("codigo");
+			
+			contasPagas = contasPagarDAO.listar();
 
 			Messages.addGlobalInfo("Contas salva com sucesso");
 		} catch (RuntimeException erro) {

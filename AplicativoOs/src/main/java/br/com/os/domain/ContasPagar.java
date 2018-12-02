@@ -18,6 +18,11 @@ public class ContasPagar extends GenericDomain {
 	@Temporal(TemporalType.DATE)//serve para guarda a data
 	private Date dataCadastro;
 	
+	
+	@Column(nullable = false)
+	@Temporal(TemporalType.DATE)//serve para guarda a data
+	private Date dataVencimento;
+	
 	@Column(nullable = false, precision = 6, scale = 2)
 	private BigDecimal valor;
 	
@@ -50,5 +55,12 @@ public class ContasPagar extends GenericDomain {
 		this.valor = valor;
 	}
 	
+	public Date getDataVencimento() {
+		return dataVencimento;
+	}
+	
+	public void setDataVencimento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
+	}
 
 }
