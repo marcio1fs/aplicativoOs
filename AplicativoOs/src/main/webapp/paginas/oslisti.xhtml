@@ -8,18 +8,18 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	template="/templates/modelo.xhtml">
 
-
 	<ui:define name="metadata">
 		<f:metadata>
-			<f:viewAction action="#{vendaBean.listar}" />
+			<f:viewAction action="#{osBean.listar}" />
 		</f:metadata>
 	</ui:define>
+
 
 	<ui:define name="conteudo">
 		<h:form id="formListagem">
 			<p:panel header="Listagem de Os">
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-					paginator="true" value="#{osBean.orden}" var="os" rows="5"
+					paginator="true" value="#{osBean.os}" var="os" rows="5"
 					paginatorPosition="top">
 
 
@@ -49,6 +49,9 @@
 						sortBy="#{os.funcionario.pessoa.nome}">
 						<h:outputText value="#{os.funcionario.pessoa.nome}" />
 					</p:column>
+
+
+				
 
 					<p:rowExpansion>
 						<p:dataTable emptyMessage="Nenhum registro encontrado."

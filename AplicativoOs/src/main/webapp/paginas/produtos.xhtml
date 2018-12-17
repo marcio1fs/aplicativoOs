@@ -21,9 +21,9 @@
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
-						
-						
-						
+
+
+
 
 						<p:commandButton icon="ui-icon-print"
 							actionListener="#{produtoBean.imprimir}" />
@@ -57,8 +57,8 @@
 							<f:convertNumber locale="pt_BR" minFractionDigits="2" />
 						</h:outputText>
 					</p:column>
-					
-	
+
+
 
 					<p:column headerText="Fabricante"
 						filterBy="#{produto.fabricante.descricao}"
@@ -72,14 +72,8 @@
 							url="http://localhost:8080/upload/#{produto.codigo}.png" />
 					</p:column>
 
-					 
 
-					<p:column headerText="Fornecedor"
-						filterBy="#{produto.fornecedor.nome}" filterMatchMode="contains"
-						sortBy="#{produto.fornecedor.nome}">
-						<h:outputText value="#{produto.fornecedor.nome}" />
-					</p:column>
-                                           
+
 
 					<p:column headerText="Opções">
 						<p:commandButton icon="ui-icon-trash"
@@ -122,7 +116,7 @@
 		<p:dialog header="Produtos - Cadastro" widgetVar="dialogo"
 			draggable="false" resizable="false" modal="true" closable="false">
 			<h:form id="formCadastro" enctype="multipart/form-data">
-				<h:panelGrid id="painel" columns="2" >
+				<h:panelGrid id="painel" columns="2">
 					<p:outputLabel for="descricao" value="Descrição:" />
 					<p:inputText id="descricao" maxlength="50" size="30"
 						value="#{produtoBean.produto.descricao}" required="true"
@@ -176,7 +170,9 @@
 					</p:selectOneMenu>
 
 
-		          <p:outputLabel for="fornecedor" value="Fornecedor:" />
+
+
+					<p:outputLabel for="fornecedor" value="Fornecedor:" />
 					<p:selectOneMenu id="fornecedor" filter="true"
 						value="#{produtoBean.produto.fornecedor}"
 						converter="omnifaces.SelectItemsConverter" required="true"
@@ -184,9 +180,10 @@
 						<f:selectItem noSelectionOption="true"
 							itemLabel="Selecione um fornecedor de Produtos" />
 						<f:selectItems value="#{produtoBean.fornecedores}"
-							var="fornecedor" itemValue="#{fornecedor}"
+							var="fornecedor" itemValue="#{fornProdutos}"
 							itemLabel="#{fornecedor.nome}" />
 					</p:selectOneMenu>
+
 
 					<p:outputLabel for="foto" value="Foto:" />
 					<p:fileUpload id="foto" mode="advanced"

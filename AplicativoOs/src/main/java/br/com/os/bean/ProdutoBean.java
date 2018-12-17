@@ -120,7 +120,7 @@ public class ProdutoBean implements Serializable {
 			produtos = produtoDAO.listar("descricao");
 
 			FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			fornecedores = fornecedorDAO.listar("codigo");
+			fornecedores = fornecedorDAO.listar("nome");
 
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os produtos");
@@ -135,8 +135,8 @@ public class ProdutoBean implements Serializable {
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listar("descricao");
 
-			// FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			// fornecedores = fornecedorDAO.listar("codigo");
+			 FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		     fornecedores = fornecedorDAO.listar("codigo");
 
 			fornProdutos = new ArrayList<>();
 
@@ -154,8 +154,8 @@ public class ProdutoBean implements Serializable {
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listar();
 
-			// FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			// fornecedores = fornecedorDAO.listar();
+			 FornecedorDAO fornecedorDAO = new FornecedorDAO();
+			 fornecedores = fornecedorDAO.listar();
 
 		} catch (RuntimeException erro) {
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um produto");
@@ -182,8 +182,8 @@ public class ProdutoBean implements Serializable {
 			FabricanteDAO fabricanteDAO = new FabricanteDAO();
 			fabricantes = fabricanteDAO.listar();
 
-			// FornecedorDAO fornecedorDAO = new FornecedorDAO();
-			// fornecedores = fornecedorDAO.listar();
+			 FornecedorDAO fornecedorDAO = new FornecedorDAO();
+			 fornecedores = fornecedorDAO.listar();
 
 			produtos = produtoDAO.listar();
 			fornProdutos = new ArrayList<>();

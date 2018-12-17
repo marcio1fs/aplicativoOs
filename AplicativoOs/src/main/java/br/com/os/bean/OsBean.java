@@ -170,6 +170,8 @@ public class OsBean implements Serializable {
 		oss = osDAO.listar("horario"); 
 		
 		
+		oss = new ArrayList<>();
+		
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar Listar a Ordem de Serviço");
 			erro.printStackTrace();
@@ -298,6 +300,8 @@ public class OsBean implements Serializable {
 
 			itensServicos = new ArrayList<>();
 			itensOs = new ArrayList<>();
+			
+			oss = osDAO.listar();
 
 			Messages.addGlobalInfo("Os realizada com sucesso");
 		} catch (RuntimeException erro) {
